@@ -5,17 +5,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --gradient: linear-gradient(100.38deg, #F3AFA1 1.16%, #7DE2E3 16.95%, #A2D5F2 34.71%, #FFB172 52.47%, #C1E2F6 69.24%, #C0FDC1 78.61%, #EC907D 88.97%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --gradient: linear-gradient(100.38deg, #F3AFA1 1.16%, #7DE2E3 16.95%, #A2D5F2 34.71%, #FFB172 52.47%, #C1E2F6 69.24%, #C0FDC1 78.61%, #EC907D 88.97%);
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
