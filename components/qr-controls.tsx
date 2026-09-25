@@ -240,9 +240,33 @@ export function QRControls({
                   step={1}
                   onChange={(val) => {
                     const r: typeof config.eyeRadius = [
-                      { outer: [val, val, val, val], inner: [Math.max(0, val - 4), Math.max(0, val - 4), Math.max(0, val - 4), Math.max(0, val - 4)] },
-                      { outer: [val, val, val, val], inner: [Math.max(0, val - 4), Math.max(0, val - 4), Math.max(0, val - 4), Math.max(0, val - 4)] },
-                      { outer: [val, val, val, val], inner: [Math.max(0, val - 4), Math.max(0, val - 4), Math.max(0, val - 4), Math.max(0, val - 4)] },
+                      {
+                        outer: [val, val, val, val],
+                        inner: [
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                        ],
+                      },
+                      {
+                        outer: [val, val, val, val],
+                        inner: [
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                        ],
+                      },
+                      {
+                        outer: [val, val, val, val],
+                        inner: [
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                          Math.max(0, val - 4),
+                        ],
+                      },
                     ];
                     updateConfig({ eyeRadius: r });
                   }}
@@ -256,7 +280,9 @@ export function QRControls({
                   <Switch
                     checked={config.eyeRadiusMode === "individual"}
                     onCheckedChange={(checked) =>
-                      updateConfig({ eyeRadiusMode: checked ? "individual" : "global" })
+                      updateConfig({
+                        eyeRadiusMode: checked ? "individual" : "global",
+                      })
                     }
                     size="sm"
                   />
@@ -270,8 +296,15 @@ export function QRControls({
                       const eye = config.eyeRadius[idx];
 
                       const updateCorner = (corner: number, val: number) => {
-                        const newRadius = [...config.eyeRadius] as typeof config.eyeRadius;
-                        const newOuter = [...eye.outer] as [number, number, number, number];
+                        const newRadius = [
+                          ...config.eyeRadius,
+                        ] as typeof config.eyeRadius;
+                        const newOuter = [...eye.outer] as [
+                          number,
+                          number,
+                          number,
+                          number,
+                        ];
                         newOuter[corner] = val;
                         newRadius[idx] = { outer: newOuter, inner: eye.inner };
                         updateConfig({ eyeRadius: newRadius });
@@ -287,7 +320,10 @@ export function QRControls({
                           </span>
                           <div className="flex items-center gap-1.5 flex-1">
                             {corners.map((label, ci) => (
-                              <div key={ci} className="flex flex-col items-center gap-0.5 flex-1">
+                              <div
+                                key={ci}
+                                className="flex flex-col items-center gap-0.5 flex-1"
+                              >
                                 <span className="text-[8px] text-muted-foreground font-mono leading-none">
                                   {label}
                                 </span>
@@ -296,7 +332,18 @@ export function QRControls({
                                   min={0}
                                   max={25}
                                   value={eye.outer[ci]}
-                                  onChange={(e) => updateCorner(ci, Math.min(25, Math.max(0, parseInt(e.target.value) || 0)))}
+                                  onChange={(e) =>
+                                    updateCorner(
+                                      ci,
+                                      Math.min(
+                                        25,
+                                        Math.max(
+                                          0,
+                                          parseInt(e.target.value) || 0,
+                                        ),
+                                      ),
+                                    )
+                                  }
                                   className="w-full h-6 text-[11px] text-center font-mono bg-muted/50 border border-border/50 rounded-md outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                 />
                               </div>
