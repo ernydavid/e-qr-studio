@@ -4,6 +4,8 @@ export type ECLevel = "L" | "M" | "Q" | "H";
 
 export type LogoPaddingStyle = "square" | "circle";
 
+export type EyeRadiusMode = "global" | "individual";
+
 export interface EyeRadiusItem {
   outer: [number, number, number, number];
   inner: [number, number, number, number];
@@ -33,6 +35,7 @@ export interface QRConfig {
   qrStyle: QRStyle;
   ecLevel: ECLevel;
   enableEyeRadius: boolean;
+  eyeRadiusMode: EyeRadiusMode;
   eyeRadius: [EyeRadiusItem, EyeRadiusItem, EyeRadiusItem];
 
   // Logo
@@ -73,6 +76,7 @@ export const DEFAULT_QR_CONFIG: QRConfig = {
   qrStyle: "squares",
   ecLevel: "M",
   enableEyeRadius: false,
+  eyeRadiusMode: "global",
   eyeRadius: [
     { outer: [0, 0, 0, 0], inner: [0, 0, 0, 0] },
     { outer: [0, 0, 0, 0], inner: [0, 0, 0, 0] },

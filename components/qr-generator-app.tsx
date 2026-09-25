@@ -8,18 +8,34 @@ import {
   getCustomPresets,
   saveCustomPreset,
   deleteCustomPreset,
+  saveThemePreference,
+  loadThemePreference,
 } from "@/lib/qr-storage";
 import { QRPreview } from "@/components/qr-preview";
 import { QRControls } from "@/components/qr-controls";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { QrCode, RotateCcw, Sun, Moon } from "lucide-react";
+import {
+  QrCode01Icon,
+  Rotate01Icon,
+  Sun01Icon,
+  Moon01Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 export function QRGeneratorApp() {
   const [config, setConfig] = useState<QRConfig>(DEFAULT_QR_CONFIG);
   const [customPresets, setCustomPresets] = useState<QRPreset[]>([]);
   const [mounted, setMounted] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const applyTheme = (isDark: boolean) => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   useEffect(() => {
     // Delay initialization to microtask to avoid synchronous cascading renders warning
@@ -29,7 +45,16 @@ export function QRGeneratorApp() {
         setConfig(savedConfig);
       }
       setCustomPresets(getCustomPresets());
-      if (document.documentElement.classList.contains("dark")) {
+
+      // Load theme preference from cookies or system preference
+      const savedTheme = loadThemePreference();
+      if (savedTheme) {
+        // Use saved theme preference
+        const isDark = savedTheme === "dark";
+        setIsDarkMode(isDark);
+        applyTheme(isDark);
+      } else if (document.documentElement.classList.contains("dark")) {
+        // Fallback to current DOM state
         setIsDarkMode(true);
       }
       setMounted(true);
@@ -81,11 +106,8 @@ export function QRGeneratorApp() {
   const toggleDarkMode = () => {
     const nextMode = !isDarkMode;
     setIsDarkMode(nextMode);
-    if (nextMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    applyTheme(nextMode);
+    saveThemePreference(nextMode);
   };
 
   return (
@@ -95,7 +117,7 @@ export function QRGeneratorApp() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shadow-xs">
-              <QrCode className="size-4" />
+              <HugeiconsIcon icon={QrCode01Icon} className="size-4" />
             </div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-sm tracking-tight text-foreground">
@@ -117,7 +139,7 @@ export function QRGeneratorApp() {
               onClick={handleReset}
               className="text-xs text-muted-foreground hover:text-foreground gap-1.5 h-8"
             >
-              <RotateCcw className="size-3.5" />
+              <HugeiconsIcon icon={Rotate01Icon} className="size-3.5" />
               <span className="hidden sm:inline">Restablecer</span>
             </Button>
 
@@ -125,12 +147,12 @@ export function QRGeneratorApp() {
               variant="outline"
               size="icon-sm"
               onClick={toggleDarkMode}
-              className="rounded-lg h-8 w-8"
+              className=""
             >
               {isDarkMode ? (
-                <Sun className="size-4" />
+                <HugeiconsIcon icon={Sun01Icon} className="size-4" />
               ) : (
-                <Moon className="size-4" />
+                <HugeiconsIcon icon={Moon01Icon} className="size-4" />
               )}
             </Button>
           </div>

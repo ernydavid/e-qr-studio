@@ -3,7 +3,12 @@
 import React, { useState } from "react";
 import { QRPreset, BUILTIN_PRESETS } from "@/lib/qr-types";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Trash2, Plus } from "lucide-react";
+import {
+  AiSparklesIcon,
+  Delete02Icon,
+  Add01Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Dialog,
   DialogContent,
@@ -45,7 +50,10 @@ export function PresetsManager({
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <Sparkles className="size-4 text-primary" />
+          <HugeiconsIcon
+            icon={AiSparklesIcon}
+            className="size-4 text-primary"
+          />
           <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Estilos & Presets
           </span>
@@ -59,7 +67,7 @@ export function PresetsManager({
                 size="xs"
                 className="gap-1 shadow-2xs text-[11px]"
               >
-                <Plus className="size-3" />
+                <HugeiconsIcon icon={Add01Icon} className="size-3" />
                 Guardar actual
               </Button>
             }
@@ -136,7 +144,7 @@ export function PresetsManager({
                       onDeletePreset(preset.id);
                     }}
                   >
-                    <Trash2 className="size-3" />
+                    <HugeiconsIcon icon={Delete02Icon} className="size-3" />
                   </Button>
                 )}
               </div>

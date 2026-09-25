@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Upload, Trash2 } from "lucide-react";
+import { Upload01Icon, Delete02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 interface LogoUploaderProps {
   logoImage?: string;
@@ -79,7 +80,7 @@ export function LogoUploader({
               disabled={disabled}
               onClick={() => onChange(undefined)}
             >
-              <Trash2 className="size-3.5" />
+              <HugeiconsIcon icon={Delete02Icon} className="size-3.5" />
             </Button>
           </div>
         </div>
@@ -89,7 +90,7 @@ export function LogoUploader({
           className="border border-dashed border-border/80 hover:border-primary/50 hover:bg-accent/20 cursor-pointer rounded-xl p-5 flex flex-col items-center justify-center gap-2 transition-colors text-center"
         >
           <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-            <Upload className="size-4" />
+            <HugeiconsIcon icon={Upload01Icon} className="size-4" />
           </div>
           <div className="space-y-0.5">
             <p className="text-xs font-medium text-foreground">

@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import { DEFAULT_QR_CONFIG, QRConfig, QRPreset } from "./qr-types";
 
 const COOKIE_NAME = "qr_config_last_state";
+const THEME_COOKIE_NAME = "qr_theme_preference";
 const STORAGE_KEY_PRESETS = "qr_custom_presets_v1";
 
 export function saveLastConfigCookie(config: QRConfig): void {
@@ -72,5 +73,29 @@ export function deleteCustomPreset(id: string): void {
     localStorage.setItem(STORAGE_KEY_PRESETS, JSON.stringify(updated));
   } catch (err) {
     console.error("Error deleting custom preset:", err);
+  }
+}
+
+export function saveThemePreference(isDarkMode: boolean): void {
+  try {
+    Cookies.set(THEME_COOKIE_NAME, isDarkMode ? "dark" : "light", {
+      expires: 365,
+      sameSite: "lax",
+    });
+  } catch (err) {
+    console.error("Error saving theme preference:", err);
+  }
+}
+
+export function loadThemePreference(): "dark" | "light" | null {
+  try {
+    const saved = Cookies.get(THEME_COOKIE_NAME);
+    if (saved === "dark" || saved === "light") {
+      return saved;
+    }
+    return null;
+  } catch (err) {
+    console.error("Error loading theme preference:", err);
+    return null;
   }
 }

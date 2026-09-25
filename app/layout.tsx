@@ -33,6 +33,30 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geist.variable} ${figtreeHeading.variable} ${geistMono.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = document.cookie
+                    .split('; ')
+                    .find(row => row.startsWith('qr_theme_preference='))
+                    ?.split('=')[1];
+                  
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {
+                  console.error('Error applying theme:', e);
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="antialiased">
         <TooltipProvider>{children}</TooltipProvider>
       </body>

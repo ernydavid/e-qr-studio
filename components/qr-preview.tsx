@@ -6,7 +6,12 @@ import { QRConfig } from "@/lib/qr-types";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
-import { Download, Copy, Check } from "lucide-react";
+import {
+  Download02Icon,
+  Copy02Icon,
+  CheckIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   downloadCanvasAsPNG,
   downloadCanvasAsWEBP,
@@ -156,7 +161,7 @@ export function QRPreview({ config, isLoading = false }: QRPreviewProps) {
                 disabled={isLoading || !config.value}
                 className="flex-1 max-w-[220px] shadow-lg shadow-primary/10 gap-2 font-medium"
               >
-                <Download className="size-4" />
+                <HugeiconsIcon icon={Download02Icon} className="size-4" />
                 Descargar QR
               </Button>
             }
@@ -213,12 +218,15 @@ export function QRPreview({ config, isLoading = false }: QRPreviewProps) {
         >
           {copied ? (
             <>
-              <Check className="size-4 text-emerald-500" />
+              <HugeiconsIcon
+                icon={CheckIcon}
+                className="size-4 text-emerald-500"
+              />
               Copiado!
             </>
           ) : (
             <>
-              <Copy className="size-4" />
+              <HugeiconsIcon icon={Copy02Icon} className="size-4" />
               Copiar
             </>
           )}
