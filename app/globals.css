@@ -1,20 +1,16 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --gradient: linear-gradient(
-    100.38deg,
-    #f3afa1 1.16%,
-    #7de2e3 16.95%,
-    #a2d5f2 34.71%,
-    #ffb172 52.47%,
-    #c1e2f6 69.24%,
-    #c0fdc1 78.61%,
-    #ec907d 88.97%
-  );
+  --gradient: linear-gradient(100.38deg,
+      #f3afa1 1.16%,
+      #7de2e3 16.95%,
+      #a2d5f2 34.71%,
+      #ffb172 52.47%,
+      #c1e2f6 69.24%,
+      #c0fdc1 78.61%,
+      #ec907d 88.97%);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -51,16 +47,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --gradient: linear-gradient(
-      100.38deg,
-      #f3afa1 1.16%,
-      #7de2e3 16.95%,
-      #a2d5f2 34.71%,
-      #ffb172 52.47%,
-      #c1e2f6 69.24%,
-      #c0fdc1 78.61%,
-      #ec907d 88.97%
-    );
+    --gradient: linear-gradient(100.38deg,
+        #f3afa1 1.16%,
+        #7de2e3 16.95%,
+        #a2d5f2 34.71%,
+        #ffb172 52.47%,
+        #c1e2f6 69.24%,
+        #c0fdc1 78.61%,
+        #ec907d 88.97%);
   }
 }
 
